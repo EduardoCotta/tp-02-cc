@@ -23,7 +23,7 @@ spec:
           mountPath: /pickle
         env:
         - name: DATASET
-          value: "https://github.com/EduardoCotta/tp-02-cc/raw/refs/heads/main/data/2023_spotify_ds1.csv"
+          value: "https://github.com/EduardoCotta/tp-02-cc/raw/refs/heads/main/data/2023_spotify_ds2.csv"
       containers:
       - name: recommender-api
         image: eduardocotta/playlists-recommender-system:0.6
