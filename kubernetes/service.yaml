@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: playlist-recommender-service
+  namespace: eduardofranca
+spec:
+  selector:
+    app: eduardofranca-playlist-recommender
+  ports:
+  - protocol: TCP
+    port: 52018
+    targetPort: 5000
+    nodePort: 32098
+  type: NodePort

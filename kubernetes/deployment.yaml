@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: playlist-recommender-deployment
+  namespace: eduardofranca
+  labels:
+    app: eduardofranca-playlist-recommender
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eduardofranca-playlist-recommender
+  template:
+    metadata:
+      labels:
+        app: eduardofranca-playlist-recommender
+    spec:
+      initContainers:
+      - name: model-container
+        image: eduardocotta/recommender-model:0.6
+        volumeMounts:
+        - name: pickle-data
+          mountPath: /pickle
+        env:
+        - name: DATASET
+          value: "https://github.com/LucasGChaves/cloud_tp2/raw/refs/heads/main/data/2023_spotify_ds1.csv"
+      containers:
+      - name: recommender-api
+        image: eduardocotta/playlists-recommender-system:0.6
+        ports:
+        - containerPort: 5000
+        env:
+        - name: VERSION
+          value: 1.0.0
+        volumeMounts:
+        - name: pickle-data
+          mountPath: /pickle
+      volumes:
+      - name: pickle-data
+        persistentVolumeClaim:
+          claimName: project2-pv2-eduardofranca

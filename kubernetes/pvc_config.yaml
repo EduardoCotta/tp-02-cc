@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  namespace: eduardofranca
+  name: project2-pv2-eduardofranca
+spec:
+  storageClassName: default-storage-class-eduardofranca
+  selector:
+    matchLabels:
+      namespace: eduardofranca
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: project2-pv2-eduardofranca
