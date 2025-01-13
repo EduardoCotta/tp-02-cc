@@ -26,7 +26,7 @@ spec:
           value: "https://github.com/EduardoCotta/tp-02-cc/raw/refs/heads/main/data/2023_spotify_ds2.csv"
       containers:
       - name: recommender-api
-        image: eduardocotta/playlists-recommender-system:0.6
+        image: eduardocotta/playlists-recommender-system:0.7
         ports:
         - containerPort: 5000
         env:
